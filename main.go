@@ -2,8 +2,10 @@ package main
 
 import (
 	"bufio"
+	"embed"
 	"fmt"
 	"io"
+	"io/fs"
 	"log"
 	"os"
 )
@@ -124,6 +126,9 @@ List of supported projects:
 -> zigo
 `
 
+//go:embed templates/*
+var templateFS embed.FS
+
 func create(projectType string) {
 	template := openTemplate(projectType)
 	defer template.Close()
@@ -143,16 +148,12 @@ func create(projectType string) {
 	fmt.Printf(".gitignore has been created for %s \n", projectType)
 }
 
-func openTemplate(file string) *os.File {
-	f := fmt.Sprintf("./templates/%s", file)
-	template, err := os.Open(f)
+func openTemplate(file string) fs.File {
+	f, err := templateFS.Open("templates/" + file)
 	if err != nil {
-		if os.IsNotExist(err) {
-			log.Fatalf("Template not available for %s. Please check 'ignore --all' to see supported projects\n", file)
-		}
-		log.Fatal(err)
+		log.Fatalf("Template not available for %s. Please check 'ignore --all' to see supported projects\n", file)
 	}
-	return template
+	return f
 }
 
 func createIfNotExist(f string) bool {
@@ -176,7 +177,7 @@ func openInAppendMode(file string) *os.File {
 	return f
 }
 
-func copy(temp, ignoreFile *os.File) {
+func copy(temp io.Reader, ignoreFile *os.File) {
 	_, err := io.Copy(ignoreFile, temp)
 	if err != nil {
 		log.Fatal(err)
