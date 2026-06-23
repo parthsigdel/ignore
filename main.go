@@ -47,6 +47,7 @@ List of supported projects:
 -> concrete5
 -> coq
 -> craftcms
+-> csharp
 -> cuda
 -> dart
 -> delphi
