@@ -4,12 +4,12 @@ Instantly create a .gitignore file for your project through your command line.
 
 ### macOS / Linux
 ```
-curl -fsSL https://raw.githubusercontent.com/parthsigdel/ignore/main/install.sh | sh
+curl -fsSL https://sh.parthsigdel.com/ignore | sh
 ```
 
 ### Windows
 ```
-irm https://raw.githubusercontent.com/parthsigdel/ignore/main/install.ps1 | iex
+irm https://sh.parthsigdel.com/ignore.ps1 | iex
 ```
 
 ## Usage
