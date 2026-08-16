@@ -1,22 +1,18 @@
 Instantly create a .gitignore file for your project through your command line. 
 
-#### Installation:
+## Installation:
 
+### macOS / Linux
 ```
-go install github.com/parthsigdel/ignore@latest
-```
-
-Then make sure your Go bin directory is on your PATH. Add this to your shell config (~/.bashrc, ~/.zshrc, etc.):
-```bash
-export PATH=$PATH:$(go env GOPATH)/bin
+curl -fsSL https://raw.githubusercontent.com/parthsigdel/ignore/main/install.sh | sh
 ```
 
-Reload it:
-```bash
-source ~/.zshrc  # or ~/.bashrc
+### Windows
+```
+irm https://raw.githubusercontent.com/parthsigdel/ignore/main/install.ps1 | iex
 ```
 
-#### Usage
+## Usage
 Type `ignore <project-type>` to create a .gitignore file for your project. 
 
 Example: `ignore rust`

@@ -21,3 +21,6 @@ go.work.sum
 .env
 
 ignore
+
+# release files 
+dist/
